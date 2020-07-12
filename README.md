@@ -128,9 +128,3 @@ We can then view all our visualizations in one place.
 
 - [react-native app](https://github.com/JscramblerBlog/google-vision-rn-demo)
 
-## Authors
-
-- Sameer Pasha
-- Archana Subramanian
-- Ravi Kiran Dubey
-- Vignesh Vaidyanathan
