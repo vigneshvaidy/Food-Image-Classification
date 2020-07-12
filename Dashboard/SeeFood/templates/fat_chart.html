@@ -1,0 +1,71 @@
+<html>
+<head>
+<script src="C:\Users\Archana\Desktop\assets\js\jquery-1.12.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> <!--Optional-->
+
+<canvas id="fat_chart" height="80" width="200"></canvas>
+
+<script>
+
+//Chart 3 --> Fat Chart
+  var ctx3 = document.getElementById("fat_chart").getContext('2d');
+  var myChart3 = new Chart(ctx3, {
+    type: 'radar',
+    data:{
+    	explodeOnClick: true,
+		labels : ['fat(g)','saturated fat(g)','unsaturated fat(g)','poly unsaturated fat(g)'],
+		datasets: [{
+			label: 'Fat Content',
+            data: [0.55,0.56,0.514,0.578],
+            backgroundColor: 'rgba(00, 255, 00, 0.3)',
+            borderColor: '#008800',
+            borderWidth: 2
+	            }]
+	        },
+	options: {
+	  responsive: true,
+	  title: {
+	    display: true,
+	    position: "top",
+	    text: "Fat Chart",
+	    fontSize: 18,
+	    fontColor: "#111"
+	  }
+	},	 
+	tooltips:
+	  	{
+	  		enabled : true,
+	  		callbacks: {
+		      label: function(tooltipItem, data) {
+		        var dataset = data.datasets[tooltipItem.datasetIndex];
+		        var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+		        var total = meta.total;
+		        var currentValue = dataset.data[tooltipItem.index];
+		        var percentage = parseFloat((currentValue/total*100).toFixed(1));
+		        return currentValue + ' (' + percentage + '%)';
+      		},
+      		title: function(tooltipItem, data) {
+        	return data.labels[tooltipItem[0].index];
+      }
+    }
+  },         
+	 legend: {
+	    display: true,
+	    position: "left",
+	    labels: {
+	      fontColor: "#333",
+	      fontSize: 16
+    }
+    }
+});
+	myChart3.draw(myChart3.data, myChart3.options);
+</script>
+</head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <blockquote class="imgur-embed-pub" lang="en" data-id="XaKS3Qo"><a href="//imgur.com/XaKS3Qo"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+    
+    <div id="chart_div"></div>
+  </body>
+</html>

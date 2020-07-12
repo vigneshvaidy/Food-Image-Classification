@@ -1,0 +1,75 @@
+<html>
+<head>
+<script src="C:\Users\Archana\Desktop\assets\js\jquery-1.12.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> <!--Optional-->
+
+<canvas id="nutrient_chart" height="80" width="200"></canvas>
+
+<script>
+
+//Chart 1 --> Nutrient Chart
+  var ctx1 = document.getElementById("nutrient_chart").getContext('2d');
+  var myChart1 = new Chart(ctx1, {
+    type: 'doughnut',
+    data:{
+		labels : ['protein(g)','calcium(g)','sodium(g)','fiber(g)','vitaminc(g)','potassium(g)','carbohydrate(g)','sugars(g)','water(g)'],
+		datasets: [{
+            label: 'Nutrition Values',
+            data: [19.9,0.285,0.385,0.4,0.0769,0.947,66.2,65.8,7.4],
+            backgroundColor: [
+             	'rgba(167, 51, 255, 1)',
+                'rgba(255, 51, 139, 1)',
+                'rgba(139, 25, 51, 1)',
+                'rgba(131, 130, 23, 1)',
+                'rgba(147, 23, 200, 1)',
+                'rgba(23, 255, 147, 1)',
+                'rgba(37, 255, 237, 1)',
+                'rgba(205, 37, 55, 1)',
+                'rgba(37, 55, 255, 1)'
+                ]}
+           ]},
+	options: {
+	  responsive: true,
+	  title: {
+	    display: true,
+	    position: "top",
+	    text: "Nutrient Chart",
+	    fontSize: 18,
+	    fontColor: "#111"
+	  },
+	 tooltips:
+	  	{
+	  		enabled : true,
+	  		callbacks: {
+		    label: function(tooltipItem, data) {
+		        var dataset = data.datasets[tooltipItem.datasetIndex];
+		        var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+		        var total = meta.total;
+		        var currentValue = dataset.data[tooltipItem.index];
+		        var percentage = parseFloat((currentValue/total*100).toFixed(1));
+		        return currentValue + ' (' + percentage + '%)';
+      		},
+      		title: function(tooltipItem, data) {
+        	return data.labels[tooltipItem[0].index];
+      }
+    }
+  },
+	 legend: {
+	    display: true,
+	    position: "left",
+	    labels: {
+	      fontColor: "#333",
+	      fontSize: 16
+    }
+    }
+}});
+	myChart1.draw(myChart1.data, myChart1.options);
+
+</script>
+</head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>

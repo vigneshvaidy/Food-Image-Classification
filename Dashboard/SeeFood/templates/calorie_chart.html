@@ -1,0 +1,68 @@
+<html>
+<head>
+<script src="C:\Users\Archana\Desktop\assets\js\jquery-1.12.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> <!--Optional-->
+
+<canvas id="calorie_chart" height="80" width="200"></canvas>
+
+<script>
+//Chart 2 -- Calorie Chart
+  var ctx2 = document.getElementById("calorie_chart").getContext('2d');
+  var myChart2 = new Chart(ctx2, {
+    type: 'polarArea',
+    data:{
+		labels : ['max calorie','min calorie','average calorie'],
+		datasets: [{
+			label: 'Calorie Values',
+            data: [876,357,259.5],
+            backgroundColor: [
+             	'rgba(247, 255, 3, 0.5)',
+                'rgba(255, 7, 3, 0.5)',
+                'rgba(11, 3, 255, 0.5)'
+                ]
+	            }]
+	        },
+	options: {
+	  responsive: true,
+	  title: {
+	    display: true,
+	    position: "top",
+	    text: "Calorie Chart",
+	    fontSize: 18,
+	    fontColor: "#111"
+	  },	 
+	tooltips:
+	  	{
+	  		enabled : true,
+	  		callbacks: {
+		      label: function(tooltipItem, data) {
+		        var dataset = data.datasets[tooltipItem.datasetIndex];
+		        var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+		        var total = meta.total;
+		        var currentValue = dataset.data[tooltipItem.index];
+		        var percentage = parseFloat((currentValue/total*100).toFixed(1));
+		        return currentValue + ' (' + percentage + '%)';
+      		},
+      		title: function(tooltipItem, data) {
+        	return data.labels[tooltipItem[0].index];
+      }
+    }
+  },         
+	 legend: {
+	    display: true,
+	    position: "left",
+	    labels: {
+	      fontColor: "#333",
+	      fontSize: 16
+    }
+    }
+}});
+	myChart2.draw(myChart2.data, myChart2.options);
+</script>
+</head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>
