@@ -123,10 +123,6 @@ requests to our dashboard, where we pass the food label name, the dashboard rece
 Once we receive data from cassandra to our dashboard, we then pass these values to our visualizations through jinja which is a template engine
 We can then view all our visualizations in one place.
 
-## Future Work
-
-We are planning to add support for user profiles in order to store previous data. We can see the previously scanned images and also the insights related to that.
-That way a user can lead a better life by making healthy life choices :smiley:
 
 ## Acknowledgements
 
